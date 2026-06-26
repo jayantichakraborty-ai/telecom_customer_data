@@ -105,31 +105,152 @@ app.delete("/accounts/:account_id", (req, res) => {
 });
 
 // ============================================
+//  LOANS ROUTES
+// ============================================
+
+app.get("/loans", (req, res) => {
+  const db = readDb();
+  let results = db.loans;
+
+  if (req.query.loanID) {
+    results = results.filter((l) => l.loanID === req.query.loanID);
+  }
+
+  if (req.query.customerName) {
+    results = results.filter((l) =>
+      l.customerName.toLowerCase().includes(req.query.customerName.toLowerCase())
+    );
+  }
+
+  if (req.query.status) {
+    results = results.filter(
+      (l) => l.status.toLowerCase() === req.query.status.toLowerCase()
+    );
+  }
+
+  if (req.query.loanType) {
+    results = results.filter(
+      (l) => l.loanType.toLowerCase() === req.query.loanType.toLowerCase()
+    );
+  }
+
+  res.json(results);
+});
+
+app.get("/loans/:loanID", (req, res) => {
+  const db = readDb();
+  const loan = db.loans.find((l) => l.loanID === req.params.loanID);
+
+  if (loan) {
+    res.json(loan);
+  } else {
+    res.status(404).json({ error: "Loan not found" });
+  }
+});
+
+app.post("/loans", (req, res) => {
+  const db = readDb();
+
+  const newLoan = {
+    id: req.body.id || String(db.loans.length + 1),
+    loanID: req.body.loanID || `L${1000 + db.loans.length + 1}`,
+    customerName: req.body.customerName || "New Customer",
+    status: req.body.status || "Active",
+    PaymentAmount: req.body.PaymentAmount || "0",
+    loanType: req.body.loanType || "Personal",
+  };
+
+  db.loans.push(newLoan);
+  writeDb(db);
+  res.status(201).json(newLoan);
+});
+
+app.put("/loans/:loanID", (req, res) => {
+  const db = readDb();
+  const index = db.loans.findIndex((l) => l.loanID === req.params.loanID);
+
+  if (index === -1) {
+    return res.status(404).json({ error: "Loan not found" });
+  }
+
+  db.loans[index] = {
+    ...db.loans[index],
+    ...req.body,
+    id: db.loans[index].id,
+    loanID: db.loans[index].loanID,
+  };
+
+  writeDb(db);
+  res.json(db.loans[index]);
+});
+
+app.delete("/loans/:loanID", (req, res) => {
+  const db = readDb();
+  const index = db.loans.findIndex((l) => l.loanID === req.params.loanID);
+
+  if (index === -1) {
+    return res.status(404).json({ error: "Loan not found" });
+  }
+
+  const deleted = db.loans.splice(index, 1);
+  writeDb(db);
+  res.json({ message: "Loan deleted", loan: deleted[0] });
+});
+
+// ============================================
 //  ROOT
 // ============================================
 app.get("/", (req, res) => {
   res.json({
     message: "Kore.ai Mock API Server",
     endpoints: {
-      list_all: "GET /accounts",
-      path_param: "GET /accounts/1001",
-      query_by_name: "GET /accounts?account_name=Jane",
-      query_by_type: "GET /accounts?account_type=savings",
-    },
+      accounts: {
+        list_all: "GET /accounts",
+        get_by_id: "GET /accounts/1001",
+        search_by_name: "GET /accounts?account_name=June",
+        search_by_type: "GET /accounts?account_type=savings",
+        create: "POST /accounts",
+        update: "PUT /accounts/1001",
+        delete: "DELETE /accounts/1001"
+      },
+      loans: {
+        list_all: "GET /loans",
+        get_by_id: "GET /loans/L1005",
+        search_by_customer: "GET /loans?customerName=Ishan",
+        search_by_type: "GET /loans?loanType=Car",
+        search_by_status: "GET /loans?status=Active",
+        create: "POST /loans",
+        update: "PUT /loans/L1005",
+        delete: "DELETE /loans/L1005"
+      }
+    }
   });
 });
+
 
 // ============================================
 //  Start Server
 // ============================================
 app.listen(PORT, () => {
   console.log(`Mock API Server is running on port ${PORT}`);
-  console.log(`\n  GET    /accounts                      - List all accounts`);
-  console.log(`  GET    /accounts/:account_id           - Get by ID`);
-  console.log(`  GET    /accounts?account_name=Jane     - Filter by name`);
-  console.log(`  GET    /accounts?account_type=savings  - Filter by type`);
-  console.log(`  POST   /accounts                      - Create account`);
-  console.log(`  PUT    /accounts/:account_id           - Update account`);
-  console.log(`  DELETE /accounts/:account_id           - Delete account`);
+
+  console.log(`\nACCOUNTS ROUTES`);
+  console.log(`  GET    /accounts                       - List all accounts`);
+  console.log(`  GET    /accounts/:account_id            - Get account by ID`);
+  console.log(`  GET    /accounts?account_name=June      - Filter by name`);
+  console.log(`  GET    /accounts?account_type=savings   - Filter by type`);
+  console.log(`  POST   /accounts                       - Create account`);
+  console.log(`  PUT    /accounts/:account_id            - Update account`);
+  console.log(`  DELETE /accounts/:account_id            - Delete account`);
+
+  console.log(`\nLOANS ROUTES`);
+  console.log(`  GET    /loans                          - List all loans`);
+  console.log(`  GET    /loans/:loanID                   - Get loan by ID`);
+  console.log(`  GET    /loans?customerName=Ishan        - Filter by customer`);
+  console.log(`  GET    /loans?loanType=Car              - Filter by type`);
+  console.log(`  GET    /loans?status=Active             - Filter by status`);
+  console.log(`  POST   /loans                          - Create loan`);
+  console.log(`  PUT    /loans/:loanID                   - Update loan`);
+  console.log(`  DELETE /loans/:loanID                   - Delete loan`);
 });
 
