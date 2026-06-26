@@ -59,5 +59,39 @@
     "account_type": "Savings",
     "account_id": "1011"
   }
- ]
+ ],
+  "loans":[
+  {
+    "loanID": "L1005",
+    "customerName": "Ishan",
+    "status": "Active",
+    "PaymentAmount": "1000",
+    "loanType": "Car",
+    "id": "1"
+  },
+  {
+    "loanID": "L1003",
+    "customerName": "Sachin Prakash",
+    "status": "Active",
+    "PaymentAmount": "5000",
+    "loanType": "Personal",
+    "id": "2"
+  },
+  {
+    "loanID": "L1001",
+    "customerName": "Allen Smith",
+    "status": "Active",
+    "PaymentAmount": "10000",
+    "loanType": "Home",
+    "id": "3"
+  },
+  {
+    "loanID": "L1002",
+    "customerName": "Justin Galvan",
+    "status": "Active",
+    "PaymentAmount": "7000",
+    "loanType": "Personal",
+    "id": "4"
+  }
+  ]
 }
