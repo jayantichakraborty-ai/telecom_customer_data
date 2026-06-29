@@ -93,5 +93,204 @@
     "loanType": "Personal",
     "id": "4"
   }
+  ],
+  {
+  "customers": [
+    {
+      "customer_id": "CUST1001",
+      "name": "Rahul Sharma",
+      "mobile_number": "9876543210",
+      "account_type": "Prepaid",
+      "plan_name": "Unlimited 399",
+      "plan_expiry": "2026-07-15",
+      "current_balance": 42.75,
+      "data_balance_gb": 3.8,
+      "voice_balance": "Unlimited",
+      "sms_balance": 100,
+      "last_recharge": {
+        "transaction_id": "TXN100001",
+        "date": "2026-06-20",
+        "amount": 399,
+        "status": "Success",
+        "payment_method": "UPI"
+      },
+      "billing_issues": [],
+      "refunds": []
+    },
+    {
+      "customer_id": "CUST1002",
+      "name": "Priya Reddy",
+      "mobile_number": "9876543211",
+      "account_type": "Postpaid",
+      "plan_name": "Family 799",
+      "billing_cycle": "15",
+      "current_bill": 1248.50,
+      "bill_due_date": "2026-07-05",
+      "bill_status": "Unpaid",
+      "billing_issues": [
+        {
+          "type": "Higher Bill",
+          "reason": "International roaming charges",
+          "status": "Open"
+        }
+      ],
+      "refunds": []
+    },
+    {
+      "customer_id": "CUST1003",
+      "name": "Anjali Verma",
+      "mobile_number": "9876543212",
+      "account_type": "Prepaid",
+      "plan_name": "Data Pack 299",
+      "current_balance": 0,
+      "last_recharge": {
+        "transaction_id": "TXN100301",
+        "date": "2026-06-28",
+        "amount": 299,
+        "status": "Pending"
+      },
+      "payment_issue": {
+        "money_debited": true,
+        "recharge_completed": false,
+        "refund_eligible": true
+      },
+      "refunds": []
+    },
+    {
+      "customer_id": "CUST1004",
+      "name": "Vikram Singh",
+      "mobile_number": "9876543213",
+      "account_type": "Postpaid",
+      "plan_name": "Premium 999",
+      "current_bill": 999,
+      "bill_status": "Paid",
+      "duplicate_charge": {
+        "amount": 999,
+        "status": "Refund Initiated",
+        "expected_refund": "2026-07-02"
+      },
+      "refunds": [
+        {
+          "amount": 999,
+          "status": "Initiated"
+        }
+      ]
+    },
+    {
+      "customer_id": "CUST1005",
+      "name": "Sneha Patel",
+      "mobile_number": "9876543214",
+      "account_type": "Prepaid",
+      "plan_name": "Unlimited 599",
+      "current_balance": 15.5,
+      "last_recharge": {
+        "transaction_id": "TXN5001",
+        "amount": 599,
+        "status": "Failed"
+      },
+      "refunds": [
+        {
+          "refund_id": "REF5001",
+          "amount": 599,
+          "status": "Processing"
+        }
+      ]
+    },
+    {
+      "customer_id": "CUST1006",
+      "name": "Arjun Nair",
+      "mobile_number": "9876543215",
+      "account_type": "Postpaid",
+      "plan_name": "Business 1299",
+      "current_bill": 1299,
+      "bill_due_date": "2026-07-03",
+      "bill_status": "Overdue",
+      "late_fee": 75,
+      "billing_issues": [],
+      "refunds": []
+    },
+    {
+      "customer_id": "CUST1007",
+      "name": "Meera Iyer",
+      "mobile_number": "9876543216",
+      "account_type": "Prepaid",
+      "plan_name": "Unlimited 249",
+      "current_balance": 210,
+      "data_balance_gb": 1.5,
+      "last_recharge": {
+        "transaction_id": "TXN7001",
+        "amount": 249,
+        "status": "Success"
+      },
+      "billing_issues": [],
+      "refunds": []
+    },
+    {
+      "customer_id": "CUST1008",
+      "name": "Karan Malhotra",
+      "mobile_number": "9876543217",
+      "account_type": "Postpaid",
+      "plan_name": "Unlimited Max",
+      "current_bill": 1549,
+      "bill_status": "Paid",
+      "billing_issues": [
+        {
+          "type": "Duplicate Monthly Charge",
+          "status": "Under Review"
+        }
+      ],
+      "refunds": [
+        {
+          "amount": 550,
+          "status": "Pending Approval"
+        }
+      ]
+    },
+    {
+      "customer_id": "CUST1009",
+      "name": "Pooja Kapoor",
+      "mobile_number": "9876543218",
+      "account_type": "Prepaid",
+      "plan_name": "Unlimited 199",
+      "current_balance": 5,
+      "plan_expiry": "2026-06-30",
+      "last_recharge": {
+        "transaction_id": "TXN9001",
+        "amount": 199,
+        "status": "Success"
+      },
+      "billing_issues": [],
+      "refunds": []
+    },
+    {
+      "customer_id": "CUST1010",
+      "name": "Rohan Gupta",
+      "mobile_number": "9876543219",
+      "account_type": "Postpaid",
+      "plan_name": "Premium Plus 1499",
+      "current_bill": 1789,
+      "bill_due_date": "2026-07-10",
+      "bill_status": "Unpaid",
+      "billing_issues": [
+        {
+          "type": "Unexpected Premium SMS Charges",
+          "status": "Open"
+        }
+      ],
+      "recent_payment": {
+        "transaction_id": "PAY1010",
+        "amount": 1789,
+        "status": "Failed",
+        "reason": "Bank Timeout"
+      },
+      "refunds": [
+        {
+          "refund_id": "REF1010",
+          "amount": 1789,
+          "status": "Processing"
+        }
+      ]
+    }
   ]
+}
 }
