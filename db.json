@@ -148,10 +148,10 @@
         "amount": 299,
         "status": "Pending"
       },
-      "payment_issue": {
-        "money_debited": true,
-        "recharge_completed": false,
-        "refund_eligible": true
+      "billing_issues": {
+        "type": "Incorrect Charges",
+        "reason": "incorrect amount debited",
+        "status": "open"
       },
       "refunds": []
     },
@@ -164,9 +164,9 @@
       "current_bill": 999,
       "bill_status": "Paid",
       "duplicate_charge": {
-        "amount": 999,
-        "status": "Refund Initiated",
-        "expected_refund": "2026-07-02"
+        "type" : "Duplicate Charge",
+        "reason": "duplicate charge of 999/- applied",
+        "status": "Refund Initiated"
       },
       "refunds": [
         {
@@ -235,6 +235,7 @@
       "billing_issues": [
         {
           "type": "Duplicate Monthly Charge",
+          "reason" : "duplicate charges applied in last month bill",
           "status": "Under Review"
         }
       ],
@@ -273,6 +274,7 @@
       "billing_issues": [
         {
           "type": "Unexpected Premium SMS Charges",
+          "reason": "high charges applied on SMS",
           "status": "Open"
         }
       ],
@@ -289,6 +291,48 @@
           "status": "Processing"
         }
       ]
+    }
+  ],
+  "plans": [
+    {
+      "plan_name" : "Family 799",
+      "Type" : "Postpaid"
+    },
+    {
+      "plan_name" : "Data Pack 299",
+      "Type" : "Prepaid"
+    },
+    {
+      "plan_name" : "Unlimited 399",
+      "Type" : "Prepaid"
+    },
+    {
+      "plan_name" : "Premium 999",
+      "Type" : "Postpaid"
+    },
+    {
+      "plan_name" : "Unlimited 599",
+      "Type" : "Prepaid"
+    },
+    {
+      "plan_name" : "Business 1299",
+      "Type" : "Postpaid"
+    },
+    {
+      "plan_name" : "Unlimited 249",
+      "Type" : "Prepaid"
+    },
+    {
+      "plan_name" : "Unlimited Max",
+      "Type" : "Postpaid"
+    },
+    {
+      "plan_name" : "Unlimited 199",
+      "Type" : "Prepaid"
+    },
+    {
+      "plan_name" : "Premium Plus 1499",
+      "Type" : "Postpaid"
     }
   ]
 }
