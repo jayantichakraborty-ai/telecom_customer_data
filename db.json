@@ -126,13 +126,7 @@
       "current_bill": 1248.50,
       "bill_due_date": "2026-07-05",
       "bill_status": "Unpaid",
-      "billing_issues": [
-        {
-          "type": "Higher Bill",
-          "reason": "International roaming charges",
-          "status": "Open"
-        }
-      ],
+      "billing_issues": [],
       "refunds": []
     },
     {
@@ -163,11 +157,7 @@
       "plan_name": "Premium 999",
       "current_bill": 999,
       "bill_status": "Paid",
-      "duplicate_charge": {
-        "type" : "Duplicate Charge",
-        "reason": "duplicate charge of 999/- applied",
-        "status": "Refund Initiated"
-      },
+       "billing_issues": [],
       "refunds": [
         {
           "amount": 999,
@@ -187,13 +177,8 @@
         "amount": 599,
         "status": "Failed"
       },
-      "refunds": [
-        {
-          "refund_id": "REF5001",
-          "amount": 599,
-          "status": "Processing"
-        }
-      ]
+       "billing_issues": [],
+      "refunds": []
     },
     {
       "customer_id": "CUST1006",
