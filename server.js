@@ -396,24 +396,25 @@ app.get("/plans/:plan_name", (req, res) => {
 });
 /* ============================================================
    DATA TOP UP
-   dataTopUp is a single nested config object (prepaidTiers /
-   postpaidTiers), not a list of records, so it gets read/replace/
-   patch endpoints instead of id-keyed CRUD.
+   dataTopUp is stored as an array containing a single config
+   object — i.e. db.dataTopUp[0].prepaidTiers / db.dataTopUp[0].postpaidTiers.
+   Not a list of records, so it gets read/replace/patch endpoints
+   instead of id-keyed CRUD.
    ============================================================ */
 
 app.get("/dataTopUp", (req, res) => {
   const db = readDb();
-  res.json(db.dataTopUp);
+  res.json(db.dataTopUp[0]);
 });
 
 app.get("/dataTopUp/prepaid", (req, res) => {
   const db = readDb();
-  res.json(db.dataTopUp.prepaidTiers);
+  res.json(db.dataTopUp[0].prepaidTiers);
 });
 
 app.get("/dataTopUp/prepaid/:tier", (req, res) => {
   const db = readDb();
-  const tier = db.dataTopUp.prepaidTiers[req.params.tier];
+  const tier = db.dataTopUp[0].prepaidTiers[req.params.tier];
   if (tier) {
     res.json(tier);
   } else {
@@ -423,12 +424,12 @@ app.get("/dataTopUp/prepaid/:tier", (req, res) => {
 
 app.get("/dataTopUp/postpaid", (req, res) => {
   const db = readDb();
-  res.json(db.dataTopUp.postpaidTiers);
+  res.json(db.dataTopUp[0].postpaidTiers);
 });
 
 app.get("/dataTopUp/postpaid/:tier", (req, res) => {
   const db = readDb();
-  const tier = db.dataTopUp.postpaidTiers[req.params.tier];
+  const tier = db.dataTopUp[0].postpaidTiers[req.params.tier];
   if (tier) {
     res.json(tier);
   } else {
@@ -439,37 +440,37 @@ app.get("/dataTopUp/postpaid/:tier", (req, res) => {
 // Replace the entire dataTopUp config
 app.put("/dataTopUp", (req, res) => {
   const db = readDb();
-  db.dataTopUp = req.body;
+  db.dataTopUp[0] = req.body;
   writeDb(db);
-  res.json(db.dataTopUp);
+  res.json(db.dataTopUp[0]);
 });
 
 // Patch a single prepaid tier (shortTerm | mediumTerm | longTerm)
 app.put("/dataTopUp/prepaid/:tier", (req, res) => {
   const db = readDb();
-  if (!db.dataTopUp.prepaidTiers[req.params.tier]) {
+  if (!db.dataTopUp[0].prepaidTiers[req.params.tier]) {
     return res.status(404).json({ error: "Prepaid tier not found" });
   }
-  db.dataTopUp.prepaidTiers[req.params.tier] = {
-    ...db.dataTopUp.prepaidTiers[req.params.tier],
+  db.dataTopUp[0].prepaidTiers[req.params.tier] = {
+    ...db.dataTopUp[0].prepaidTiers[req.params.tier],
     ...req.body,
   };
   writeDb(db);
-  res.json(db.dataTopUp.prepaidTiers[req.params.tier]);
+  res.json(db.dataTopUp[0].prepaidTiers[req.params.tier]);
 });
 
 // Patch a single postpaid tier (entryLevelPlans | midTierEntertainmentPlan | premiumUnlimitedTier)
 app.put("/dataTopUp/postpaid/:tier", (req, res) => {
   const db = readDb();
-  if (!db.dataTopUp.postpaidTiers[req.params.tier]) {
+  if (!db.dataTopUp[0].postpaidTiers[req.params.tier]) {
     return res.status(404).json({ error: "Postpaid tier not found" });
   }
-  db.dataTopUp.postpaidTiers[req.params.tier] = {
-    ...db.dataTopUp.postpaidTiers[req.params.tier],
+  db.dataTopUp[0].postpaidTiers[req.params.tier] = {
+    ...db.dataTopUp[0].postpaidTiers[req.params.tier],
     ...req.body,
   };
   writeDb(db);
-  res.json(db.dataTopUp.postpaidTiers[req.params.tier]);
+  res.json(db.dataTopUp[0].postpaidTiers[req.params.tier]);
 });
 
 // ============================================
@@ -521,16 +522,16 @@ app.get("/", (req, res) => {
   update: "PUT /plans/Unlimited%20399",
   delete: "DELETE /plans/Unlimited%20399"
 },
-dataTopUp: {
-  get_full_config: "GET /dataTopUp",
-  get_prepaid_tiers: "GET /dataTopUp/prepaid",
-  get_prepaid_tier_by_name: "GET /dataTopUp/prepaid/shortTerm",
-  get_postpaid_tiers: "GET /dataTopUp/postpaid",
-  get_postpaid_tier_by_name: "GET /dataTopUp/postpaid/entryLevelPlans",
-  replace_full_config: "PUT /dataTopUp",
-  update_prepaid_tier: "PUT /dataTopUp/prepaid/mediumTerm",
-  update_postpaid_tier: "PUT /dataTopUp/postpaid/midTierEntertainmentPlan"
-}
+ data_top_up: {
+        get_full_config: "GET /dataTopUp",
+        get_prepaid_tiers: "GET /dataTopUp/prepaid",
+        get_prepaid_tier_by_name: "GET /dataTopUp/prepaid/shortTerm",
+        get_postpaid_tiers: "GET /dataTopUp/postpaid",
+        get_postpaid_tier_by_name: "GET /dataTopUp/postpaid/entryLevelPlans",
+        replace_full_config: "PUT /dataTopUp",
+        update_prepaid_tier: "PUT /dataTopUp/prepaid/mediumTerm",
+        update_postpaid_tier: "PUT /dataTopUp/postpaid/midTierEntertainmentPlan"
+      }
     }
   });
 });
@@ -590,14 +591,14 @@ console.log(`  PUT    /plans/:plan_name              - Update plan`);
 console.log(`  DELETE /plans/:plan_name              - Delete plan`);
 
 console.log(`\nDATA TOP UP ROUTES`);
-console.log(`  GET    /dataTopUp                         - Get full data top-up config`);
-console.log(`  GET    /dataTopUp/prepaid                 - Get all prepaid tiers`);
-console.log(`  GET    /dataTopUp/prepaid/:tier           - Get prepaid tier (shortTerm|mediumTerm|longTerm)`);
-console.log(`  GET    /dataTopUp/postpaid                - Get all postpaid tiers`);
-console.log(`  GET    /dataTopUp/postpaid/:tier          - Get postpaid tier (entryLevelPlans|midTierEntertainmentPlan|premiumUnlimitedTier)`);
-console.log(`  PUT    /dataTopUp                         - Replace full data top-up config`);
-console.log(`  PUT    /dataTopUp/prepaid/:tier           - Update a prepaid tier`);
-console.log(`  PUT    /dataTopUp/postpaid/:tier          - Update a postpaid tier`);
+  console.log(`  GET    /dataTopUp                         - Get full data top-up config`);
+  console.log(`  GET    /dataTopUp/prepaid                 - Get all prepaid tiers`);
+  console.log(`  GET    /dataTopUp/prepaid/:tier           - Get prepaid tier (shortTerm|mediumTerm|longTerm)`);
+  console.log(`  GET    /dataTopUp/postpaid                - Get all postpaid tiers`);
+  console.log(`  GET    /dataTopUp/postpaid/:tier          - Get postpaid tier (entryLevelPlans|midTierEntertainmentPlan|premiumUnlimitedTier)`);
+  console.log(`  PUT    /dataTopUp                         - Replace full data top-up config`);
+  console.log(`  PUT    /dataTopUp/prepaid/:tier           - Update a prepaid tier`);
+  console.log(`  PUT    /dataTopUp/postpaid/:tier          - Update a postpaid tier`);
 
 });
 
