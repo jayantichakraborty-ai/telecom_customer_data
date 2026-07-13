@@ -322,146 +322,76 @@
   ],
    "dataTopUp": [
     {
-    "prepaidTiers": {
-      "shortTerm": {
-        "validity": "Max 3 days",
-        "plans": [
-          {
-            "data": "1 GB",
-            "price": 1.99,
-            "currency": "USD"
-          },
-          {
-            "data": "2 GB",
-            "price": 2.99,
-            "currency": "USD"
-          }
-        ]
-      },
-      "mediumTerm": {
-        "validity": "7-10 days",
-        "plans": [
-          {
-            "data": "4 GB",
-            "price": 5.99,
-            "currency": "USD"
-          },
-          {
-            "data": "8 GB",
-            "price": 9.99,
-            "currency": "USD"
-          },
-          {
-            "data": "12 GB",
-            "price": 13.99,
-            "currency": "USD"
-          }
-        ]
-      },
-      "longTerm": {
-        "validity": "30 Days",
-        "plans": [
-          {
-            "data": "20 GB",
-            "price": 19.99,
-            "currency": "USD"
-          },
-          {
-            "data": "30 GB",
-            "price": 27.99,
-            "currency": "USD"
-          },
-          {
-            "data": "50 GB",
-            "price": 39.99,
-            "currency": "USD"
-          }
-        ]
-      }
-    },
-    "postpaidTiers": {
-      "entryLevelPlans": {
-        "plans": [
-          {
-            "data": "50 GB",
-            "price": 29.99,
-            "currency": "USD"
-          },
-          {
-            "data": "60 GB",
-            "price": 34.99,
-            "currency": "USD"
-          },
-          {
-            "data": "70 GB",
-            "price": 39.99,
-            "currency": "USD"
-          }
-        ],
-        "features": {
-          "throttling": {
-            "description": "Once the limit is reached, speeds throttle down to a continuous rate",
-            "minSpeed": "1 Mbps",
-            "maxSpeed": "20 Mbps"
-          },
-          "bundledVoiceMinutes": {
-            "min": 150,
-            "max": 250,
-            "scope": "All local networks"
-          }
-        }
-      },
-      "midTierEntertainmentPlan": {
-        "plans": [
-          {
-            "data": "60 GB",
-            "price": 44.99,
-            "currency": "USD"
-          },
-          {
-            "data": "70 GB",
-            "price": 49.99,
-            "currency": "USD"
-          },
-          {
-            "data": "90 GB",
-            "price": 59.99,
-            "currency": "USD"
-          }
-        ],
-        "features": {
-          "premiumStreamingPerks": [
-            {
-              "name": "Netflix Mobile",
-              "type": "Complimentary access"
-            },
-            {
-              "name": "YouTube Premium",
-              "type": "Complimentary subscription",
-              "url": "https://www.youtube.com/premium_benefits"
-            }
+      "prepaidTiers": {
+        "shortTerm": {
+          "validity": "Max 3 days",
+          "plans": [
+            { "data": "1 GB", "price": 1.99, "currency": "USD" },
+            { "data": "2 GB", "price": 2.99, "currency": "USD" }
+          ]
+        },
+        "mediumTerm": {
+          "validity": "7-10 days",
+          "plans": [
+            { "data": "4 GB", "price": 5.99, "currency": "USD" },
+            { "data": "8 GB", "price": 9.99, "currency": "USD" },
+            { "data": "12 GB", "price": 13.99, "currency": "USD" }
+          ]
+        },
+        "longTerm": {
+          "validity": "30 Days",
+          "plans": [
+            { "data": "20 GB", "price": 19.99, "currency": "USD" },
+            { "data": "30 GB", "price": 27.99, "currency": "USD" },
+            { "data": "50 GB", "price": 39.99, "currency": "USD" }
           ]
         }
       },
-      "premiumUnlimitedTier": {
-        "data": "Unlimited",
-        "speed": "Full-speed 5G",
-        "price": 79.99,
-        "currency": "USD",
-        "features": {
-          "localCallingAllowance": {
-            "upTo": 1000,
-            "unit": "minutes"
-          },
-          "internationalRoaming": {
-            "dataAllowance": "Complimentary"
-          },
-          "eliteCustomerTier": {
-            "example": "Serenade Gold"
+      "postpaidTiers": {
+        "entryLevelPlans": {
+          "plans": [],
+          "features": {
+            "throttling": {
+              "description": "Once the limit is reached, speeds throttle down to a continuous rate",
+              "minSpeed": "1 Mbps",
+              "maxSpeed": "20 Mbps"
+            },
+            "bundledVoiceMinutes": {
+              "min": 150,
+              "max": 250,
+              "scope": "All local networks"
+            }
+          }
+        },
+        "midTierEntertainmentPlan": {
+          "plans": [
+            { "data": "60 GB", "price": 44.99, "currency": "USD" },
+            { "data": "70 GB", "price": 49.99, "currency": "USD" },
+            { "data": "90 GB", "price": 59.99, "currency": "USD" }
+          ],
+          "features": {
+            "premiumStreamingPerks": [
+              { "name": "Netflix Mobile", "type": "Complimentary access" },
+              {
+                "name": "YouTube Premium",
+                "type": "Complimentary subscription",
+                "url": "https://www.youtube.com/premium_benefits"
+              }
+            ]
+          }
+        },
+        "premiumUnlimitedTier": {
+          "data": "Unlimited",
+          "speed": "Full-speed 5G",
+          "price": 79.99,
+          "currency": "USD",
+          "features": {
+            "localCallingAllowance": { "upTo": 1000, "unit": "minutes" },
+            "internationalRoaming": { "dataAllowance": "Complimentary" },
+            "eliteCustomerTier": { "example": "Serenade Gold" }
           }
         }
       }
     }
-  } 
-]  
+  ]
 }
