@@ -401,17 +401,17 @@ app.get("/plans/:plan_name", (req, res) => {
    patch endpoints instead of id-keyed CRUD.
    ============================================================ */
 
-app.get("/data-top-up", (req, res) => {
+app.get("/dataTopUp", (req, res) => {
   const db = readDb();
   res.json(db.dataTopUp);
 });
 
-app.get("/data-top-up/prepaid", (req, res) => {
+app.get("/dataTopUp/prepaid", (req, res) => {
   const db = readDb();
   res.json(db.dataTopUp.prepaidTiers);
 });
 
-app.get("/data-top-up/prepaid/:tier", (req, res) => {
+app.get("/dataTopUp/prepaid/:tier", (req, res) => {
   const db = readDb();
   const tier = db.dataTopUp.prepaidTiers[req.params.tier];
   if (tier) {
@@ -421,12 +421,12 @@ app.get("/data-top-up/prepaid/:tier", (req, res) => {
   }
 });
 
-app.get("/data-top-up/postpaid", (req, res) => {
+app.get("/dataTopUp/postpaid", (req, res) => {
   const db = readDb();
   res.json(db.dataTopUp.postpaidTiers);
 });
 
-app.get("/data-top-up/postpaid/:tier", (req, res) => {
+app.get("/dataTopUp/postpaid/:tier", (req, res) => {
   const db = readDb();
   const tier = db.dataTopUp.postpaidTiers[req.params.tier];
   if (tier) {
@@ -437,7 +437,7 @@ app.get("/data-top-up/postpaid/:tier", (req, res) => {
 });
 
 // Replace the entire dataTopUp config
-app.put("/data-top-up", (req, res) => {
+app.put("/dataTopUp", (req, res) => {
   const db = readDb();
   db.dataTopUp = req.body;
   writeDb(db);
@@ -445,7 +445,7 @@ app.put("/data-top-up", (req, res) => {
 });
 
 // Patch a single prepaid tier (shortTerm | mediumTerm | longTerm)
-app.put("/data-top-up/prepaid/:tier", (req, res) => {
+app.put("/dataTopUp/prepaid/:tier", (req, res) => {
   const db = readDb();
   if (!db.dataTopUp.prepaidTiers[req.params.tier]) {
     return res.status(404).json({ error: "Prepaid tier not found" });
@@ -459,7 +459,7 @@ app.put("/data-top-up/prepaid/:tier", (req, res) => {
 });
 
 // Patch a single postpaid tier (entryLevelPlans | midTierEntertainmentPlan | premiumUnlimitedTier)
-app.put("/data-top-up/postpaid/:tier", (req, res) => {
+app.put("/dataTopUp/postpaid/:tier", (req, res) => {
   const db = readDb();
   if (!db.dataTopUp.postpaidTiers[req.params.tier]) {
     return res.status(404).json({ error: "Postpaid tier not found" });
@@ -590,14 +590,14 @@ console.log(`  PUT    /plans/:plan_name              - Update plan`);
 console.log(`  DELETE /plans/:plan_name              - Delete plan`);
 
 console.log(`\nDATA TOP UP ROUTES`);
-console.log(`  GET    /data-top-up                         - Get full data top-up config`);
-console.log(`  GET    /data-top-up/prepaid                 - Get all prepaid tiers`);
-console.log(`  GET    /data-top-up/prepaid/:tier           - Get prepaid tier (shortTerm|mediumTerm|longTerm)`);
-console.log(`  GET    /data-top-up/postpaid                - Get all postpaid tiers`);
-console.log(`  GET    /data-top-up/postpaid/:tier          - Get postpaid tier (entryLevelPlans|midTierEntertainmentPlan|premiumUnlimitedTier)`);
-console.log(`  PUT    /data-top-up                         - Replace full data top-up config`);
-console.log(`  PUT    /data-top-up/prepaid/:tier           - Update a prepaid tier`);
-console.log(`  PUT    /data-top-up/postpaid/:tier          - Update a postpaid tier`);
+console.log(`  GET    /dataTopUp                         - Get full data top-up config`);
+console.log(`  GET    /dataTopUp/prepaid                 - Get all prepaid tiers`);
+console.log(`  GET    /dataTopUp/prepaid/:tier           - Get prepaid tier (shortTerm|mediumTerm|longTerm)`);
+console.log(`  GET    /dataTopUp/postpaid                - Get all postpaid tiers`);
+console.log(`  GET    /dataTopUp/postpaid/:tier          - Get postpaid tier (entryLevelPlans|midTierEntertainmentPlan|premiumUnlimitedTier)`);
+console.log(`  PUT    /dataTopUp                         - Replace full data top-up config`);
+console.log(`  PUT    /dataTopUp/prepaid/:tier           - Update a prepaid tier`);
+console.log(`  PUT    /dataTopUp/postpaid/:tier          - Update a postpaid tier`);
 
 });
 
