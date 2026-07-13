@@ -520,16 +520,16 @@ app.get("/", (req, res) => {
   create: "POST /plans",
   update: "PUT /plans/Unlimited%20399",
   delete: "DELETE /plans/Unlimited%20399"
-}
-data_top_up: {
-  get_full_config: "GET /data-top-up",
-  get_prepaid_tiers: "GET /data-top-up/prepaid",
-  get_prepaid_tier_by_name: "GET /data-top-up/prepaid/shortTerm",
-  get_postpaid_tiers: "GET /data-top-up/postpaid",
-  get_postpaid_tier_by_name: "GET /data-top-up/postpaid/entryLevelPlans",
-  replace_full_config: "PUT /data-top-up",
-  update_prepaid_tier: "PUT /data-top-up/prepaid/mediumTerm",
-  update_postpaid_tier: "PUT /data-top-up/postpaid/midTierEntertainmentPlan"
+},
+dataTopUp: {
+  get_full_config: "GET /dataTopUp",
+  get_prepaid_tiers: "GET /dataTopUp/prepaid",
+  get_prepaid_tier_by_name: "GET /dataTopUp/prepaid/shortTerm",
+  get_postpaid_tiers: "GET /dataTopUp/postpaid",
+  get_postpaid_tier_by_name: "GET /dataTopUp/postpaid/entryLevelPlans",
+  replace_full_config: "PUT /dataTopUp",
+  update_prepaid_tier: "PUT /dataTopUp/prepaid/mediumTerm",
+  update_postpaid_tier: "PUT /dataTopUp/postpaid/midTierEntertainmentPlan"
 }
     }
   });
